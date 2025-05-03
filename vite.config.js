@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -10,26 +10,8 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
     rollupOptions: {
-      external: [
-        'path',
-        'fs',
-        'os',
-        'crypto',
-        'stream',
-        'util',
-        'child_process',
-        'assert',
-        'net',
-        'tls',
-        'http',
-        'https',
-        'zlib',
-        'fsevents',
-        'module',
-        'url'
-      ]
-    }
-  }
-})
+      external: ['fsevents'],
+    },
+  },
+});
