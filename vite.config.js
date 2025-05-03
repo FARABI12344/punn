@@ -13,22 +13,22 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       external: [
-        'fs',
         'path',
-        'crypto',
+        'fs',
         'os',
+        'crypto',
         'stream',
         'util',
-        'net',
-        'assert',
         'child_process',
-        'fsevents',
+        'assert',
+        'net',
         'tls',
-        'zlib',
         'http',
         'https',
+        'zlib',
+        'fsevents',
         'module',
-        'events'
+        'url'
       ]
     }
   }
