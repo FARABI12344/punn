@@ -1,0 +1,110 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 266 50% 20%; /* Dark Purple */
+
+    --card: 0 0% 100%;
+    --card-foreground: 266 50% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 266 50% 20%;
+
+    --primary: 275 80% 60%; /* Medium Purple */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 330 90% 70%; /* Pink */
+    --secondary-foreground: 0 0% 100%; /* White */
+
+    --muted: 270 30% 96%; /* Very Light Purple/Gray */
+    --muted-foreground: 270 10% 45%; /* Grayish Purple */
+
+    --accent: 330 80% 95%; /* Light Pink */
+    --accent-foreground: 330 60% 30%; /* Darker Pink */
+
+    --destructive: 0 84% 60%; /* Red */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 275 50% 85%; /* Light Purple Border */
+    --input: 275 50% 90%; /* Lighter Purple Input BG */
+    --ring: 330 90% 70%; /* Pink Ring */
+
+    --radius: 0.75rem; /* More rounded */
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-cartoon-soft text-foreground font-cartoon; /* Apply cartoon font */
+    /* Add subtle noise background overlay */
+    @apply relative; /* Needed for pseudo-element */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::before {
+      content: '';
+      position: fixed; /* Covers entire viewport */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: theme('backgroundImage.noise-pattern');
+      opacity: 0.03; /* Very subtle */
+      pointer-events: none; /* Allows clicking through */
+      z-index: -1; /* Behind content */
+   }
+
+  #root {
+     flex-grow: 1;
+     display: flex;
+     flex-direction: column;
+   }
+
+  /* Global styles for a cartoony feel */
+   h1, h2, h3, h4, h5, h6 {
+     @apply font-bold;
+   }
+
+   button:not([data-disabled]) { /* Apply hover only if not disabled */
+     @apply shadow-cartoon-soft hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-cartoon-hard active:translate-x-[1px] active:translate-y-[1px] active:shadow-cartoon-soft transition-all duration-150;
+   }
+
+   input, textarea {
+     @apply rounded-lg border-2 shadow-cartoon-inset focus:shadow-cartoon-hard focus:border-primary transition-all duration-150 placeholder:text-purple-400/80; /* Placeholder color adjust */
+   }
+
+   /* Subtle link hover */
+    a {
+      @apply transition-colors duration-150;
+    }
+}
+
+/* Custom animations & components */
+@layer components {
+  .text-stroke-cartoon {
+     -webkit-text-stroke: 2px hsl(var(--primary) / 0.8); /* Slightly transparent stroke */
+     paint-order: stroke fill;
+     text-shadow: 2px 2px 0px hsl(var(--secondary) / 0.6); /* Softer shadow */
+  }
+
+  /* Enhance Card hover */
+  .card-interactive {
+      @apply transition-all duration-200 ease-out hover:shadow-cartoon-pink hover:scale-[1.02] hover:border-pink-300;
+  }
+
+  /* Notification Badge */
+  .notification-badge {
+    @apply absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white ring-2 ring-white;
+  }
+}
+  
